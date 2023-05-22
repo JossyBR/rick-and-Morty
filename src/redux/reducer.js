@@ -2,8 +2,8 @@
 // import Favorites from "../pages/Favorites/Favorites";
 
 const initialState = {
-  myFavorites: []
-  // allCharacters: [],
+  myFavorites: [],
+  // allCharacters: []
 };
 
 // El reducer recibe el estado que modifica y una action

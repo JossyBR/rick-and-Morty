@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import styles from "./nav.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { PathRoutes } from "../../helpers/Routes.helpers";
-import Favorites from "../../pages/Favorites/Favorites";
+import Favorites from "../../pages/Favorites"
 
 
 export default function Nav(props) {

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styles from "./favorites.module.css";
-import Card from "../../components/Card/Card";
+import Card from "../components/Card/Card";
 import { connect } from "react-redux";
 // import { addFav, removeFav, orderCards, filterCards } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Favorites(props) {
-  // const { myFavorites } = props;
-  const myFavorites = useSelector((state) => state.myFavorites);
-  const dispatch = useDispatch();
-  const [aux, setAux] = useState(false);
+function Favorites(props) {
+  const { myFavorites } = props;
+  // const myFavorites = useSelector((state) => state.myFavorites);
+  // const dispatch = useDispatch();
+  // const [aux, setAux] = useState(false);
 
-  useEffect(() => {
-    console.log(myFavorites);
-  }, []);
+ 
+
+  // useEffect(() => {
+  //   console.log(myFavorites);
+  // }, []);
 
   // const handleOrder = (e) => {
   //   dispatch(orderCards(e.target.value));
@@ -27,19 +29,20 @@ export default function Favorites(props) {
   return (
     <div className={styles.divFavorites}>
       <h1>My favorites</h1>
-      {myFavorites &&
-        myFavorites.map((character) => (
-          <Card
-            key={character.id}
-            id={character.id}
-            name={character.name}
-            status={character.status}
-            species={character.species}
-            gender={character.gender}
-            origin={character.origin?.name}
-            image={character.image}
+      {myFavorites && myFavorites.map((char) => {
+          return (
+            <Card
+            key={char.id}
+            id={char.id}
+            name={char.name}
+            status={char.status}
+            species={char.species}
+            gender={char.gender}
+            origin={char.origin?.name}
+            image={char.image}
           />
-        ))}
+          )
+          })}
       {/* <select onChange={handleOrder}>
         <option value="A">Ascedente</option>
         <option value="D">Descendente</option>
@@ -55,10 +58,10 @@ export default function Favorites(props) {
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     myFavorites: state.myFavorites,
-//   }
-// };
+const mapStateToProps = (state) => {
+  return {
+    myFavorites: state.myFavorites,
+  }
+};
 
-// export default connect(mapStateToProps, null)(Favorites);
+export default connect(mapStateToProps, null)(Favorites);

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./card.module.css";
 import { Link } from "react-router-dom";
 // import { PathRoutes } from "../../helpers/Routes.helpers";
-// import { connect } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { addFav, removeFav } from "../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function Card(props) {
+function Card(props) {
   const {
     id,
     name,
@@ -16,19 +16,24 @@ export default function Card(props) {
     origin,
     image,
     onClose,
-    // addFav,
-    // removeFav,
-    // myFavorites,
+    addFav,
+    removeFav,
+    myFavorites,
   } = props;
 
-  const myFavorites = useSelector((state) => state.myFavorites);
-  const dispatch = useDispatch();
+  // const myFavorites = useSelector((state) => state.myFavorites);
+  // const dispatch = useDispatch();
 
   const [isFav, setIsFav] = useState(false);
 
+  const handleFavorite = () => {
+    isFav ? removeFav(id) : addFav(props);
+    setIsFav(!isFav);
+  };
+
   useEffect(() => {
     myFavorites.forEach((fav) => {
-      if (fav.id === id) {
+      if (fav.id === props.id) {
         setIsFav(true);
         console.log(id);
       }
@@ -44,31 +49,6 @@ export default function Card(props) {
   //   setIsFav(!isFav);
   // };
 
-  const handleFavorite = () => {
-    isFav
-      ? dispatch(removeFav(id))
-      : dispatch(
-          addFav(id, name, status, species, gender, origin, image, onClose)
-        );
-    setIsFav(!isFav);
-  };
-
-  // const handleFavorite = () => {
-  //   if (isFav) {
-  //     dispatch(removeFav(id));
-  //     setIsFav(false);
-  //   } else {
-  //     dispatch(addFav(props));
-  //     setIsFav(true);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if(isFav){
-  //     dispatch(addFav(id));
-  //   } else {
-  //     dispatch(removeFav(id))
-  //   }
 
   // }, [isFav, id, dispatch]); //El array de dependecia siempre debe estar para que el useEffect no se enloquesca y haga cualquier cosa.
 
@@ -115,30 +95,30 @@ export default function Card(props) {
           {" "}
           <span className={styles.span}>Gender:</span> {gender}
         </h2>
-        <h2>{origin.name}</h2>
+        {/* <h2>{origin.name}</h2> */}
       </div>
     </div>
   );
 }
 
-// const mapStateProps = (state) => {
-//   return {
-//     myFavorites: state.myFavorites,
-//   };
-// };
+const mapStateProps = (state) => {
+  return {
+    myFavorites: state.myFavorites,
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addFav:(character) => {
-//       dispatch(addFav(character));
-//     },
-//     removeFav: (id) => {
-//       dispatch(removeFav(id));
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addFav:(character) => {
+      dispatch(addFav(character));
+    },
+    removeFav: (id) => {
+      dispatch(removeFav(id));
+    }
+  }
+}
 
-// export default connect(mapStateProps, mapDispatchToProps)(Card);
+export default connect(mapStateProps, mapDispatchToProps)(Card);
 
 //Para suscribir componentes funcionales utilizamos el useSelector
 

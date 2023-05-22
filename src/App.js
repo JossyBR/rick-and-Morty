@@ -13,7 +13,7 @@ import Nav from "./components/Nav/Nav.jsx";
 import About from "./pages/About.jsx";
 import Detail from "./pages/Detail.jsx";
 import Form from "./components/Form/Form";
-import Favorites from "./pages/Favorites/Favorites.jsx"
+import Favorites from "./pages/Favorites.jsx"
 
 //Router-Dom
 import { Routes, Route, useLocation, useNavigate} from "react-router-dom";
