@@ -65,10 +65,13 @@ function App() {
   };
 
   function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
-    }
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(data);
+      access && navigate("/home");
+    });
   }
 
   return (
@@ -92,15 +95,15 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
-      {/* <Routes>
-        <Route exact path="/home">
-          <Cards characters={characters} />
-        </Route>
-        <Route exact path="/about" element={About} />
-        <Route exact path="/detail/:id" element={Detail} />
-      </Routes> */}
     </div>
   );
 }
 
 export default App;
+
+// function login(userData) {
+//   if (userData.password === PASSWORD && userData.email === EMAIL) {
+//     setAccess(true);
+//     navigate("/home");
+//   }
+// }
