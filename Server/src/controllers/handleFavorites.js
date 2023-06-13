@@ -1,24 +1,22 @@
-
 let myFavorites = [];
 
 const postFav = (req, res) => {
-    // const character = req.body;
+  // const character = req.body;
 
-    myFavorites.push(req.body)
-    return res.status(200).json(myFavorites);
-}
+  myFavorites.push(req.body);
+  return res.status(200).json(myFavorites);
+};
 
 const deleteFav = (req, res) => {
-    const id = req.params;
-
-   const deletedChar = myFavorites.filter(char => {
-        return char.id !== id});
-
-    myFavorites = deletedChar;
-    return res.json(myFavorites);
-}
+  const { id } = req.params;
+  const deletedChar = myFavorites.filter((char) => {
+    return char.id !== id;
+  });
+  myFavorites = deletedChar;
+  return res.json(myFavorites);
+};
 
 module.exports = {
-    postFav,
-    deleteFav,
-}
+  postFav,
+  deleteFav,
+};

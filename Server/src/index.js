@@ -4,8 +4,6 @@ const PORT = 3001;
 const router = require('./routes/routes');
 
 
-//AQUI ESTOY TRAYENDO LAS RUTAS
-// server.use(router) 
 
 //Middlewares
 server.use((req, res, next) => {

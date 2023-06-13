@@ -6,9 +6,7 @@ const getCharById = async (req, res) => {
   
     try {
       const { id } = req.params;
-
-      const { data } = await axios.get(URL + id);
-      const { status, name, species, origin, image, gender } = data;
+      const { status, name, species, origin, image, gender } = (await axios.get(URL + id)).data;
       const character = { id, status, name, species, origin, image, gender };
 
       return character.name
@@ -16,11 +14,11 @@ const getCharById = async (req, res) => {
         : res.status(404).send("Not fount");
 
     } catch (error) {
-      return res.status(500).send(error.message);
+        return res.status(500).send(error.message);
     };
 };
 
-module.exports = { getCharById };
+module.exports = getCharById;
 
 
 

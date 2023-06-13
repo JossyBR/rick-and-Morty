@@ -43,43 +43,33 @@ function App() {
 
   const onSearch = async (id) => {
     try {
-      const  { data } = await axios(
+      const { data } = await axios(
         `http://localhost:3001/rickandmorty/character/${id}`
       );
       if (data.name) {
-        // Verificar si el personaje ya existe en la lista
-        const isAlreadyAdded = characters.some((char) => char.id === data.id);
-
-        if (isAlreadyAdded) {
-          alert(`El personaje ${data.name} ya ha sido agregado a la lista.`);
-        } else {
-          setCharacters((oldChars) => [...oldChars, data]);
-        }
-      }else {
-        window.alert("¡No hay personajes con este ID!");
+        setCharacters((oldChars) => [...oldChars, data]);
       }
-    }catch (error) {
-      return error;
+    } catch (error) {
+      window.alert("¡No hay personajes con este ID!");
     }
   };
-
 
   const onClose = (id) => {
     setCharacters(characters.filter((char) => char.id !== Number(id)));
   };
 
-  const login = async (userData) => {
+  async function login(userData) {
     try {
       const { email, password } = userData;
       const URL = "http://localhost:3001/rickandmorty/login/";
-
-      const { data } = await axios(URL + `?email=${email}&password=${password}`);
+      const { data } = await axios(
+        URL + `?email=${email}&password=${password}`
+      );
       const { access } = data;
-      setAccess(access);
+      setAccess(data);
       access && navigate("/home");
-
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -120,14 +110,6 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-
-
-
 // function login(userData) {
 //   if (userData.password === PASSWORD && userData.email === EMAIL) {
 //     setAccess(true);
@@ -135,23 +117,21 @@ export default App;
 //   }
 // }
 
+// const onSearch = (id) => {
+//   axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+//     ({ data }) => {
+//       if (data.name) {
+//         // Verificar si el personaje ya existe en la lista
+//         const isAlreadyAdded = characters.some((char) => char.id === data.id);
 
-
-  // const onSearch = (id) => {
-  //   axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-  //     ({ data }) => {
-  //       if (data.name) {
-  //         // Verificar si el personaje ya existe en la lista
-  //         const isAlreadyAdded = characters.some((char) => char.id === data.id);
-
-  //         if (isAlreadyAdded) {
-  //           alert(`El personaje ${data.name} ya ha sido agregado a la lista.`);
-  //         } else {
-  //           setCharacters((oldChars) => [...oldChars, data]);
-  //         }
-  //       } else {
-  //         window.alert("¡No hay personajes con este ID!");
-  //       }
-  //     }
-  //   );
-  // };
+//         if (isAlreadyAdded) {
+//           alert(`El personaje ${data.name} ya ha sido agregado a la lista.`);
+//         } else {
+//           setCharacters((oldChars) => [...oldChars, data]);
+//         }
+//       } else {
+//         window.alert("¡No hay personajes con este ID!");
+//       }
+//     }
+//   );
+// };

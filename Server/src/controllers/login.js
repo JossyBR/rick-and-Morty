@@ -10,7 +10,7 @@ const Login = (req, res) => {
     }
   });
 
-  res.status(200).json({ access });
+  return res.status(200).json({ access });
 };
 
 // const userEx = users.find((user) => {

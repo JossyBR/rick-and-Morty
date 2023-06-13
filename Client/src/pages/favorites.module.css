@@ -1,3 +1,42 @@
 .divFavorites {
-    z-index: 2;
+  z-index: 2;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.divSelect {
+  /* border: 2px solid yellow; */
+  display: flex;
+  order: 1;
+  height: 35px;
+  margin: 5px;
+  
+}
+
+.divSelect select {
+  /* border: 2px solid pink; */
+  border-radius: 5px;
+  margin-left: 5px;
+  width: 200px;
+  font-weight: bold;
+  background: rgb(248, 255, 232);
+   background: linear-gradient(
+     to bottom,
+     rgba(248, 255, 232, 1) 0%,
+     rgba(227, 245, 171, 1) 33%,
+     rgba(183, 223, 45, 1) 100%
+   );
+
+}
+
+.cardsFavorites {
+  /* border: 2px solid pink; */
+  order: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 5px;
 }

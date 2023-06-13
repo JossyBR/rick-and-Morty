@@ -9,7 +9,6 @@ function Favorites(props) {
   const { myFavorites } = props;
   const dispatch = useDispatch();
   const [aux, setAux] = useState(false);
- 
 
   const handleOrder = (e) => {
     dispatch(orderCards(e.target.value));
@@ -18,34 +17,37 @@ function Favorites(props) {
 
   const handleFilter = (e) => {
     dispatch(filterCards(e.target.value));
-  }
+  };
 
   return (
     <div className={styles.divFavorites}>
-      <h1>My favorites</h1>
-      {myFavorites &&
-        myFavorites.map((char) => {
-          return (
-            <Card
-              key={char.id}
-              id={char.id}
-              name={char.name}
-              status={char.status}
-              species={char.species}
-              gender={char.gender}
-              origin={char.origin?.name}
-              image={char.image}
-            />
-          );
-        })}
+      <div className={styles.cardsFavorites}>
+        {myFavorites &&
+          myFavorites.map((char) => {
+            return (
+              <Card
+                key={char.id}
+                id={char.id}
+                name={char.name}
+                status={char.status}
+                species={char.species}
+                gender={char.gender}
+                origin={char.origin?.name}
+                image={char.image}
+              />
+            );
+          })}
+      </div>
 
-      <div>
+      <div className={styles.divSelect}>
         <select onChange={handleOrder}>
+          <option> --- Selecciona el orden --- </option>
           <option value="A">Ascedente</option>
           <option value="D">Descendente</option>
         </select>
 
         <select onChange={handleFilter}>
+        <option> --- Selecciona el genero --- </option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Genderless">Genderless</option>

@@ -5,14 +5,14 @@ export const addFav = (character) => {
 
   return async (dispatch) => {
     try {
-      const {data} = await axios.post(endpoint, character);
+      const { data } = await axios.post(endpoint, character);
 
       return dispatch({
         type: "ADD_FAV",
         payload: data,
       });
     } catch (error) {
-      return error;
+      console.log(error);
     }
   };
 };
@@ -28,11 +28,10 @@ export const removeFav = (id) => {
         payload: data,
       });
     } catch (error) {
-      return error;
+      console.log(error);
     }
   };
 };
-
 
 export const filterCards = (gender) => {
   return {
@@ -73,7 +72,6 @@ export const orderCards = (order) => {
 //        });
 //     };
 //  };
-
 
 // export const removeFav = (id) => {
 //   const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
