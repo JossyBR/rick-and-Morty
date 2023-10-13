@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
-import styles from "./Cards.module.css"
+import styles from "./Cards.module.css";
+import { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 
@@ -10,8 +11,6 @@ import styles from "./Cards.module.css"
 export default function Cards(props) {
   //const onclose = () => window.alert("Algo")
   const { characters, onClose } = props;
-  
-
 
   return (
     <div className={styles.divPadre}>
@@ -33,6 +32,3 @@ export default function Cards(props) {
     </div>
   );
 }
-
-
-

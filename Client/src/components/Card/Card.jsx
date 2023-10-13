@@ -69,6 +69,7 @@ function Card(props) {
       )}
       <button
         onClick={() => {
+          console.log("Cerrando la tarjeta con ID:", id);
           onClose(id);
         }}
         className={styles.botonX}

@@ -3,8 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import styles from "./nav.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { PathRoutes } from "../../helpers/Routes.helpers";
-import Favorites from "../../pages/Favorites"
-
+import Favorites from "../../pages/Favorites";
 
 export default function Nav(props) {
   const { onSearch, onSearchRandom } = props;
@@ -15,7 +14,7 @@ export default function Nav(props) {
       {/* <button className={styles.about} onClick={() => {('/about')}}>About</button>
                 <button className={styles.home} onClick={() => {navigate('/home')}}>Home</button> */}
       <div className={styles.logo}></div>
-      
+
       <div className={styles.navbotones}>
         <Link to="/home" className={styles.home}>
           Home
@@ -26,13 +25,11 @@ export default function Nav(props) {
         <Link to="/favorites" className={styles.favorites}>
           Favorites
         </Link>
-        <button className={styles.ramdon}>Ramdom</button>
       </div>
 
       <div className={styles.buscar}>
-      <SearchBar onSearch={onSearch} /> {/*Se adiciona la función onSearch */}
+        <SearchBar onSearch={onSearch} /> {/*Se adiciona la función onSearch */}
       </div>
-      
     </div>
   );
 }
