@@ -49,7 +49,6 @@ function Card(props) {
   //   setIsFav(!isFav);
   // };
 
-
   // }, [isFav, id, dispatch]); //El array de dependecia siempre debe estar para que el useEffect no se enloquesca y haga cualquier cosa.
 
   // const handleFavorite = () => {
@@ -68,14 +67,16 @@ function Card(props) {
         </button>
       )}
       <button
+      className={styles.botonX}
         onClick={() => {
-          console.log("Cerrando la tarjeta con ID:", id);
           onClose(id);
+          console.log("Cerrando la tarjeta con ID:", id);
         }}
-        className={styles.botonX}
+        
       >
         X
       </button>
+
       <img className={styles.image} src={image} alt="" />
 
       <Link to={`/detail/${id}`}>
@@ -110,14 +111,14 @@ const mapStateProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFav:(character) => {
+    addFav: (character) => {
       dispatch(addFav(character));
     },
     removeFav: (id) => {
       dispatch(removeFav(id));
-    }
-  }
-}
+    },
+  };
+};
 
 export default connect(mapStateProps, mapDispatchToProps)(Card);
 
